@@ -42,5 +42,6 @@ public class ChanceTest {
         Double actual = chance.logicalOrOfTwoChances(0.1, 0.2);
 
         assertEquals(0.28, actual, 0.001d);
+
     }
 }
