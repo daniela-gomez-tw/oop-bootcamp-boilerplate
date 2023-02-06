@@ -2,21 +2,32 @@ package oop;
 
 public class Chance {
 
-    private final Integer scenarios = 6;
+    private static final Integer scenarios = 6;
+    private double value;
 
-    public Double gettingNumber() {
-        return 1.0 / scenarios;
+    public Chance(){}
+
+    public Chance(double value) {
+        this.value = value;
     }
 
-    public Double notGettingNumber() {
-        return 1.0 - gettingNumber();
+    public double getValue() {
+        return value;
     }
 
-    public Double productOfTwoChances(double firstChance, double secondChance) {
-        return firstChance * secondChance;
+    public static Chance gettingNumber() {
+        return new Chance( 1.0 / scenarios);
     }
 
-    public Double logicalOrOfTwoChances(double firstChance, double secondChance) {
-        return firstChance + secondChance - productOfTwoChances(firstChance, secondChance);
+    public static Chance notGettingNumber() {
+        return new Chance(1.0 - gettingNumber().getValue());
+    }
+
+    public Chance productOfTwoChances(Chance chance) {
+        return new Chance(this.value * chance.getValue());
+    }
+
+    public Chance logicalOrOfTwoChances(Chance chance) {
+        return new Chance(this.value + chance.getValue() - productOfTwoChances(chance).getValue());
     }
 }
