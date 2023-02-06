@@ -5,8 +5,6 @@ public class Chance {
     private static final Integer scenarios = 6;
     private double value;
 
-    public Chance(){}
-
     public Chance(double value) {
         this.value = value;
     }
