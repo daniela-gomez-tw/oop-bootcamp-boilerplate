@@ -2,7 +2,6 @@ package oop.parking;
 
 import oop.parking.domain.Car;
 import oop.parking.domain.CarBuilder;
-import org.checkerframework.checker.units.qual.C;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -40,7 +39,7 @@ public class AssistantTest {
     public void itShouldBeAbleToParkACar() {
         assertFalse(assistant.isCarParked(car));
 
-        assistant.parkCar(new Car(carId));
+        assistant.parkCar(car);
         assertTrue(assistant.isCarParked(car));
     }
 
@@ -59,16 +58,6 @@ public class AssistantTest {
     }
 
     @Test
-    public void itShouldParkAtTheSecondParkingLotIfTheFirstOneIsFull() {
-        assistant.parkCar(new Car("1"));
-        assistant.parkCar(new Car("2"));
-        assistant.parkCar(new Car("3"));
-        assistant.parkCar(new Car(carId));
-
-        assertTrue(assistant.isCarParked(car));
-    }
-
-    @Test
     public void itShouldNotParkIfParkingIsOverEightyPercentCapacity() {
         assistant.parkCar(new Car("1"));
         assistant.parkCar(new Car("2"));
@@ -78,7 +67,7 @@ public class AssistantTest {
         assistant.parkCar(new Car("6"));
         assistant.parkCar(new Car("7"));
         assistant.parkCar(new Car("8"));
-        assistant.parkCar(new Car(carId));
+        assistant.parkCar(car);
 
         assertFalse(assistant.isCarParked(car));
     }
@@ -92,6 +81,7 @@ public class AssistantTest {
         parkingLotList.add(parkingLot2);
 
         final Assistant assistant1 = new Assistant(parkingLotList);
+        assistant1.parkCar(car);
 
         assertEquals(assistant1.findLowestOccupancyParkingLot(), parkingLot2);
     }

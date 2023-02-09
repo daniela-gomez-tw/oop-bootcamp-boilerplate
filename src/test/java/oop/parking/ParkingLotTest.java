@@ -1,7 +1,6 @@
 package oop.parking;
 
 import oop.parking.domain.Car;
-import org.checkerframework.checker.units.qual.C;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -19,10 +18,11 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void itShouldBeAbleToParkACar() {
-        parkingLot.parkCar(new Car("ABC-123"));
+    public void itShouldBeAbleToParkCar() {
+        Car car = new Car("ABC-123");
+        parkingLot.parkCar(car);
 
-        assertTrue(parkingLot.getParkedCars().contains("ABC-123"));
+        assertTrue(parkingLot.checkIfCarIsParked(car));
     }
 
     @Test
