@@ -1,5 +1,6 @@
-package oop;
+package oop.converter;
 
+import oop.converter.MeasureConverter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

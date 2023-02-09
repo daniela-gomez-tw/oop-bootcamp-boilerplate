@@ -1,5 +1,6 @@
-package oop;
+package oop.firstSteps;
 
+import oop.firstSteps.HelloWorld;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;

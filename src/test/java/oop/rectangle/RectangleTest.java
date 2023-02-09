@@ -1,5 +1,6 @@
-package oop;
+package oop.rectangle;
 
+import oop.rectangle.Rectangle;
 import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;

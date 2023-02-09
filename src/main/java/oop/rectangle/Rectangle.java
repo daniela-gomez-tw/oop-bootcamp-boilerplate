@@ -1,4 +1,4 @@
-package oop;
+package oop.rectangle;
 
 public final class Rectangle {
   private final Integer width;

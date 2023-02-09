@@ -1,4 +1,4 @@
-package oop;
+package oop.change;
 
 public class Chance {
 

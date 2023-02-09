@@ -1,6 +1,6 @@
-package oop;
+package oop.chance;
 
-import org.junit.jupiter.api.BeforeAll;
+import oop.change.Chance;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
