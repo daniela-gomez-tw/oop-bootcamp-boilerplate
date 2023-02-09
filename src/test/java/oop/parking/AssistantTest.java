@@ -92,6 +92,7 @@ public class AssistantTest {
         assistant1.parkCar(new Car("abc"));
 
         assertEquals(assistant1.findLowestOccupancyParkingLot(), parkingLot2);
+        //TODO need to park the car
     }
 
     @Test
