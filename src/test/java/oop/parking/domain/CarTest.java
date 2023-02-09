@@ -41,4 +41,15 @@ class CarTest {
         assertTrue(actual instanceof HandicapParkingStrategy);
     }
 
+    @Test
+    public void itShouldReturnLargeHandicapStrategyWhenCarLargeHandicap() {
+        Car car = new CarBuilder("abc")
+                .withHandicapped(true)
+                .build();
+
+        ParkingStrategy actual = car.findStrategyToPark();
+
+        assertTrue(actual instanceof LargeHandicapParkingStrategy);
+    }
+
 }

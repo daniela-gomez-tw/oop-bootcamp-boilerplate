@@ -5,10 +5,11 @@ import oop.parking.ParkingStrategy;
 
 import java.util.List;
 
-public class HandicapParkingStrategy implements ParkingStrategy {
+public class LargeHandicapParkingStrategy implements ParkingStrategy {
+
+
     @Override
     public void park(Car car, List<ParkingLot> parkingLot) {
-
 
     }
 }

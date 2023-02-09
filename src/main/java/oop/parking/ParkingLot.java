@@ -62,4 +62,8 @@ public class ParkingLot {
     public boolean isAcceptsHandicapped() {
         return acceptsHandicapped;
     }
+
+    public boolean contains(Car car) {
+        return parkedCars.contains(car);
+    }
 }
