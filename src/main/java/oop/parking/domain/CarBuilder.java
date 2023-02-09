@@ -20,6 +20,6 @@ public class CarBuilder {
     }
 
     public Car build() {
-        return new Car(id);
+        return new Car(id, large, handicapped);
     }
 }
