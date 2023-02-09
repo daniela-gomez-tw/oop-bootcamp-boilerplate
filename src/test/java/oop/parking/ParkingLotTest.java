@@ -27,30 +27,30 @@ public class ParkingLotTest {
 
     @Test
     public void itShouldBeAbleToRetrieveACar() {
-        String carId = "ABC-123";
-        parkingLot.parkCar(new Car(carId));
+        Car car = new Car("ABC-123");
+        parkingLot.parkCar(car);
 
-        parkingLot.retrieveCar(carId);
-        assertFalse(parkingLot.getParkedCars().contains("ABC-123"));
+        parkingLot.retrieveCar(car);
+        assertFalse(parkingLot.getParkedCars().contains(car.getId()));
     }
 
     @Test
-    public void itShouldBeAbleToCheckIfACarIsParked() {
-        String carId = "ABC-123";
-        parkingLot.parkCar(new Car(carId));
+    public void itShouldBeAbleToCheckIfCarIsParked() {
+        final Car car = new Car("ABC-123");
+        parkingLot.parkCar(car);
 
-        assertTrue(parkingLot.checkIfCarIsParked(carId));
+        assertTrue(parkingLot.checkIfCarIsParked(car));
     }
 
     @Test
     public void itShouldNotParkACarWhenIsFull() {
+        Car carToFind = new Car("ABC-123");
         parkingLot.parkCar(new Car("1"));
         parkingLot.parkCar(new Car("2"));
 
-        String carId = "ABC-123";
-        parkingLot.parkCar(new Car(carId));
+        parkingLot.parkCar(carToFind);
 
-        assertFalse(parkingLot.checkIfCarIsParked(carId));
+        assertFalse(parkingLot.checkIfCarIsParked(carToFind));
     }
 
     @Test

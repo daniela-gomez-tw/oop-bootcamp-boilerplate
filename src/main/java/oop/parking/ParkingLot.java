@@ -43,12 +43,12 @@ public class ParkingLot {
     }
 
 
-    public boolean retrieveCar(String carId) {
-        return parkedCars.remove(carId);
+    public boolean retrieveCar(Car car) {
+        return parkedCars.remove(car);
     }
 
-    public boolean checkIfCarIsParked(String carId) {
-        return parkedCars.contains(carId);
+    public boolean checkIfCarIsParked(Car car) {
+        return parkedCars.contains(car);
     }
 
     private boolean hasFreeSlots() {

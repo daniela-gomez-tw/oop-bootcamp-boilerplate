@@ -21,25 +21,25 @@ public class Assistant {
         }
     }
 
-    private ParkingLot findParkingLotFor(String carId) {
+    public ParkingLot findParkingLotFor(Car car) {
         for (ParkingLot lot : this.parkingLots) {
-            if (lot.checkIfCarIsParked(carId)) {
+            if (lot.checkIfCarIsParked(car)) {
                 return lot;
             }
         }
         return null;
     }
 
-    public boolean isCarParked(String carId) {
-        return findParkingLotFor(carId) != null;
+    public boolean isCarParked(Car car) {
+        return findParkingLotFor(car) != null;
     }
 
-    public boolean retrieveCar(String carId) {
-        ParkingLot lot = findParkingLotFor(carId);
+    public boolean retrieveCar(Car car) {
+        ParkingLot lot = findParkingLotFor(car);
         if (lot == null) {
             return false;
         }
-        return lot.retrieveCar(carId);
+        return lot.retrieveCar(car);
     }
 
     public ParkingLot findLowestOccupancyParkingLot() {

@@ -1,6 +1,7 @@
 package oop.parking;
 
 import oop.parking.domain.Car;
+import oop.parking.domain.CarBuilder;
 import org.checkerframework.checker.units.qual.C;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -14,11 +15,13 @@ import static org.testng.Assert.*;
 public class AssistantTest {
     private String carId;
     private Owner owner;
+    private Car car;
     private Assistant assistant;
 
     @BeforeTest
     public void init() {
         this.owner = new Owner();
+        this.car = new Car( "ABC-123");
         this.carId = "ABC-123";
     }
 
@@ -35,24 +38,24 @@ public class AssistantTest {
 
     @Test
     public void itShouldBeAbleToParkACar() {
-        assertFalse(assistant.isCarParked(carId));
+        assertFalse(assistant.isCarParked(car));
 
         assistant.parkCar(new Car(carId));
-        assertTrue(assistant.isCarParked(carId));
+        assertTrue(assistant.isCarParked(car));
     }
 
     @Test
     public void itShouldBeAbleToRetrieveACar() {
-        assistant.parkCar(new Car(carId));
+        assistant.parkCar(car);
 
-        assertTrue(assistant.retrieveCar(carId));
+        assertTrue(assistant.retrieveCar(car));
 
-        assertFalse(assistant.isCarParked(carId));
+        assertFalse(assistant.isCarParked(car));
     }
 
     @Test
     public void itShouldNotBeAbleToRetrieveACarThatIsNotParked() {
-        assertFalse(assistant.retrieveCar(carId));
+        assertFalse(assistant.retrieveCar(car));
     }
 
     @Test
@@ -62,7 +65,7 @@ public class AssistantTest {
         assistant.parkCar(new Car("3"));
         assistant.parkCar(new Car(carId));
 
-        assertTrue(assistant.isCarParked(carId));
+        assertTrue(assistant.isCarParked(car));
     }
 
     @Test
@@ -77,7 +80,7 @@ public class AssistantTest {
         assistant.parkCar(new Car("8"));
         assistant.parkCar(new Car(carId));
 
-        assertFalse(assistant.isCarParked(carId));
+        assertFalse(assistant.isCarParked(car));
     }
 
     @Test
@@ -89,10 +92,8 @@ public class AssistantTest {
         parkingLotList.add(parkingLot2);
 
         final Assistant assistant1 = new Assistant(parkingLotList);
-        assistant1.parkCar(new Car("abc"));
 
         assertEquals(assistant1.findLowestOccupancyParkingLot(), parkingLot2);
-        //TODO need to park the car
     }
 
     @Test
@@ -104,8 +105,22 @@ public class AssistantTest {
         parkingLotList.add(parkingLot2);
 
         final Assistant assistant1 = new Assistant(parkingLotList);
-        assistant1.parkCar(new Car("abc"));
 
         assertEquals(assistant1.findParkingLotThatAcceptsHandicapped(), parkingLot2);
+    }
+
+    @Test
+    public void itShouldParkLargerCarsIntoLowestOccupancyParkingLot() {
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        final ParkingLot parkingLot1 = new ParkingLot(5, owner);
+        final ParkingLot parkingLot2 = new ParkingLot(5, owner);
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+
+        final Assistant assistant1 = new Assistant(parkingLotList);
+        final Car car = new CarBuilder().setId("123").setLarge(true).createCar();
+        assistant1.parkCar(car);
+
+        assertEquals(assistant1.findParkingLotFor(car), parkingLot2);
     }
 }
