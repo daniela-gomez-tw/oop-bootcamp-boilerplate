@@ -1,5 +1,7 @@
 package oop.parking;
 
+import oop.parking.domain.Car;
+
 import java.util.List;
 
 public class Assistant {
@@ -10,10 +12,10 @@ public class Assistant {
         this.parkingLots = parkingLots;
     }
 
-    public void parkCar(String carId) {
+    public void parkCar(Car car) {
         for (ParkingLot lot : this.parkingLots) {
             if (lot.checkCapacityPercentage() < 0.8) {
-                lot.parkCar(carId);
+                lot.parkCar(car);
                 return;
             }
         }
@@ -46,8 +48,16 @@ public class Assistant {
         for (ParkingLot lot : this.parkingLots) {
             if (lot.checkCapacityPercentage() < maxOccupancy) {
                 parkingLot = lot;
+                maxOccupancy = lot.checkCapacityPercentage();
             }
         }
         return parkingLot;
+    }
+
+    public ParkingLot findParkingLotThatAcceptsHandicapped() {
+        return parkingLots.stream()
+                .filter(ParkingLot::isAcceptsHandicapped)
+                .findFirst()
+                .get();
     }
 }

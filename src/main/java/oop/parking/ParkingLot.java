@@ -1,5 +1,7 @@
 package oop.parking;
 
+import oop.parking.domain.Car;
+
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,8 @@ public class ParkingLot {
 
     private PropertyChangeSupport propertyChangeSupport;
     private final int capacity;
-    private final List<String> parkedCars = new ArrayList<>();
+    private final List<Car> parkedCars = new ArrayList<>();
+    private boolean acceptsHandicapped;
 
 
     public ParkingLot(int capacity, Owner owner) {
@@ -16,12 +19,18 @@ public class ParkingLot {
         setListenerSupport(owner);
     }
 
+    public ParkingLot(int capacity, Owner owner, boolean acceptsHandicapped) {
+        this.capacity = capacity;
+        setListenerSupport(owner);
+        this.acceptsHandicapped = acceptsHandicapped;
+    }
+
     private void setListenerSupport(Owner owner) {
         propertyChangeSupport = new PropertyChangeSupport(this);
         propertyChangeSupport.addPropertyChangeListener(owner);
     }
 
-    public void parkCar(String newCar) {
+    public void parkCar(Car newCar) {
         if (this.hasFreeSlots()) {
             double capacityBefore = checkCapacityPercentage();
             parkedCars.add(newCar);
@@ -29,7 +38,7 @@ public class ParkingLot {
         }
     }
 
-    public List<String> getParkedCars() {
+    public List<Car> getParkedCars() {
         return parkedCars;
     }
 
@@ -48,5 +57,9 @@ public class ParkingLot {
 
     public double checkCapacityPercentage() {
         return (double) parkedCars.size() / (double) this.capacity;
+    }
+
+    public boolean isAcceptsHandicapped() {
+        return acceptsHandicapped;
     }
 }

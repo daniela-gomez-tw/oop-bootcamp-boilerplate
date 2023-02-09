@@ -1,5 +1,6 @@
 package oop.parking;
 
+import oop.parking.domain.Car;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -18,10 +19,10 @@ public class OwnerTest {
     public void itShouldGiveAnOvercrowdedAlertWhenCapacityLimitIsExceeded() {
         ParkingLot parkingLot = new ParkingLot(5, owner);
 
-        parkingLot.parkCar("123");
-        parkingLot.parkCar("456");
-        parkingLot.parkCar("789");
-        parkingLot.parkCar("000");
+        parkingLot.parkCar(new Car("123"));
+        parkingLot.parkCar(new Car("456"));
+        parkingLot.parkCar(new Car("789"));
+        parkingLot.parkCar(new Car("000"));
         assertTrue(owner.isAlerted());
     }
 
@@ -29,15 +30,15 @@ public class OwnerTest {
     public void itShouldNotGiveAnOvercrowdedAlertWhenBelowCapacityLimit() {
         ParkingLot parkingLot = new ParkingLot(4, owner);
 
-        parkingLot.parkCar("1");
-        parkingLot.parkCar("2");
+        parkingLot.parkCar(new Car("1"));
+        parkingLot.parkCar(new Car("2"));
         assertFalse(owner.isAlerted());
     }
 
     @Test
     public void itShouldGiveAnLowOccupancyAlertWhenCapacityIsBellowTheLimit() {
         ParkingLot parkingLot = new ParkingLot(10, owner);
-        parkingLot.parkCar("1");
+        parkingLot.parkCar(new Car("1"));
 
         assertTrue(owner.isLowOccupancyAlerted());
     }
@@ -45,8 +46,8 @@ public class OwnerTest {
     @Test
     public void itShouldNotGiveAnLowOccupancyAlertWhenCapacityIsAboveTheLimit() {
         ParkingLot parkingLot = new ParkingLot(10, owner);
-        parkingLot.parkCar("1");
-        parkingLot.parkCar("2");
+        parkingLot.parkCar(new Car("1"));
+        parkingLot.parkCar(new Car("2"));
 
         assertFalse(owner.isLowOccupancyAlerted());
     }
