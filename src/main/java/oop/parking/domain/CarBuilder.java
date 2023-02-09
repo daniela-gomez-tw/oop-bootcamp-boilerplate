@@ -5,22 +5,21 @@ public class CarBuilder {
     private boolean large;
     private boolean handicapped;
 
-    public CarBuilder setId(String id) {
+    public CarBuilder(String id) {
         this.id = id;
-        return this;
     }
 
-    public CarBuilder setLarge(boolean large) {
+    public CarBuilder withLarge(boolean large) {
         this.large = large;
         return this;
     }
 
-    public CarBuilder setHandicapped(boolean handicapped) {
+    public CarBuilder withHandicapped(boolean handicapped) {
         this.handicapped = handicapped;
         return this;
     }
 
-    public Car createCar() {
+    public Car build() {
         return new Car(id);
     }
 }

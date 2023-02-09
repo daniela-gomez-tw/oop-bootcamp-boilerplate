@@ -108,7 +108,7 @@ public class AssistantTest {
         parkingLotList.add(parkingLot2);
 
         final Assistant assistant1 = new Assistant(parkingLotList);
-        final Car car = new CarBuilder().setId("123").setLarge(true).createCar();
+        final Car car = new CarBuilder("123").withLarge(true).build();
         assistant1.parkCar(car);
 
         assertEquals(assistant1.findParkingLotFor(car), parkingLot2);
