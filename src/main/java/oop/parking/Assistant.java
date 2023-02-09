@@ -3,6 +3,7 @@ package oop.parking;
 import oop.parking.domain.Car;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Assistant {
 
@@ -55,9 +56,10 @@ public class Assistant {
     }
 
     public ParkingLot findParkingLotThatAcceptsHandicapped() {
-        return parkingLots.stream()
-                .filter(ParkingLot::isAcceptsHandicapped)
-                .findFirst()
-                .get();
+        final Optional<ParkingLot> lot = parkingLots.stream()
+            .filter(ParkingLot::isAcceptsHandicapped)
+            .findFirst();
+
+        return lot.isPresent() ? lot.get() : null;
     }
 }
