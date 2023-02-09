@@ -22,7 +22,7 @@ class CarTest {
     @Test
     public void itShouldReturnLargeStrategyWhenCarLarge() {
         Car car = new CarBuilder("abc")
-                .withLarge(true)y
+                .withLarge(true)
                 .build();
 
         ParkingStrategy actual = car.findStrategyToPark();
